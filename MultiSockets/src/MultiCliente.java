@@ -28,7 +28,7 @@ public class MultiCliente extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
         javax.swing.JLabel jLabel2 = new javax.swing.JLabel();
-        // Variables declaration - do not modify//GEN-BEGIN:variables
+
         javax.swing.JButton jButton1 = new javax.swing.JButton();
         javax.swing.JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();

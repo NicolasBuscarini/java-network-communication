@@ -31,7 +31,6 @@ public class MultiServer extends javax.swing.JFrame {
 
     private void initComponents() {
 
-        // Variables declaration - do not modify//GEN-BEGIN:variables
         javax.swing.JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
 
@@ -56,8 +55,8 @@ public class MultiServer extends javax.swing.JFrame {
 
         setSize(new java.awt.Dimension(515, 440));
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
-    private void formWindowOpened() {//GEN-FIRST:event_formWindowOpened
+    }
+    private void formWindowOpened() {
         new Thread(() -> {
             while (true) {
                 try {
@@ -79,16 +78,6 @@ public class MultiServer extends javax.swing.JFrame {
                     antibugidade = Integer.parseInt(msg[1]);
                     System.out.println(antibugnome);
                     System.out.println(antibugidade);
-
-                    if (antibugnome.equals("Maria") && antibugidade >= 18) {
-                        duaspool = 1;
-                    }
-                    if (!antibugnome.equals("Maria") && antibugidade >= 18) {
-                        duaspool = 2;
-                    }
-                    if (!antibugnome.equals("Maria") && antibugidade < 18) {
-                        duaspool = 3;
-                    }
                     System.out.println(duaspool);
                     texto = jTextArea1.getText();
                     jTextArea1.setText(texto + "\n\nVALORES DE CHEGADA\n\nRecebendo valores: " + antibugnome + "\n" + antibugidade);
@@ -105,7 +94,6 @@ public class MultiServer extends javax.swing.JFrame {
     }
 
     private javax.swing.JTextArea jTextArea1;
-    // End of variables declaration//GEN-END:variables
     public void reenviando() {
         new Thread(() -> {
             while (true) {
@@ -117,13 +105,8 @@ public class MultiServer extends javax.swing.JFrame {
                         ds2 = new DatagramSocket();
                         mcs2 = new MulticastSocket(12348);
                         mcs2.joinGroup(addr2);
-                        if (duaspool == 1) {
-                            valorenvio = "OLA MARIA, tudo bem?";
-                        } else if (duaspool == 2) {
-                            valorenvio = "OLA ESTRANHA.";
-                        } else if (duaspool == 3) {
-                            valorenvio = "Olá jovem, obrigado por usar o computador.";
-                        }
+
+                        valorenvio = "OLA "+ antibugnome +", tudo bem?";
 
                         numeroantibug = 0;
 
