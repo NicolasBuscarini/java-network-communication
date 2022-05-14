@@ -51,7 +51,7 @@ public class MultiCliente extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(30, 90, 60, 30);
 
-        jLabel2.setText("Idade:");
+        jLabel2.setText("Texto:");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(30, 140, 60, 30);
 
@@ -62,7 +62,7 @@ public class MultiCliente extends javax.swing.JFrame {
 
         jTextArea1.setBackground(new java.awt.Color(0, 0, 0));
         jTextArea1.setColumns(20);
-        jTextArea1.setForeground(new java.awt.Color(153, 153, 0));
+        jTextArea1.setForeground(new java.awt.Color(0, 255, 0));
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
@@ -73,20 +73,20 @@ public class MultiCliente extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(330, 40, 140, 30);
 
-        jLabel4.setText("Cadastro:");
+        jLabel4.setText("Mensagem:");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(140, 40, 100, 30);
 
         setSize(new java.awt.Dimension(569, 439));
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         new Thread(() -> {
             try {
                 if (!jTextField1.getText().equals("") && !jTextField2.getText().equals("")) {
                     concatenado = jTextField1.getText() + "/" + jTextField2.getText() + "/";
                     texto = jTextArea1.getText();
-                    jTextArea1.setText(texto + "\n\nVALORES DE ENVIO\n\nEnviando valores: " +concatenado);
+                    jTextArea1.setText(texto + "\n\n Valores enviados: \n" +concatenado);
                     addr = InetAddress.getByName("239.0.0.1");
                     ds = new DatagramSocket();
                     mcs = new MulticastSocket(12347);
@@ -118,7 +118,7 @@ public class MultiCliente extends javax.swing.JFrame {
                     ds2 = new DatagramSocket();
                     data = new String(pkt2.getData());
                     texto = jTextArea1.getText();
-                    jTextArea1.setText(texto +"\n\nVALORES DE CHEGADA\n\n"+ data);
+                    jTextArea1.setText(texto +"\n\nRetorno: \n"+ data);
                     mcs2.close();
                 } catch (IOException | NumberFormatException ignored) {
                 }
@@ -133,5 +133,5 @@ public class MultiCliente extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    // End of variables declaration//GEN-END:variables
+
 }

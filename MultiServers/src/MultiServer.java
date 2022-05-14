@@ -23,7 +23,7 @@ public class MultiServer extends javax.swing.JFrame {
     String antibugnome;
     int numeroantibug = 0;
     int duaspool = 0;
-    int antibugidade = 0;
+    String antibugtexto;
 
     public MultiServer() {
         initComponents();
@@ -42,10 +42,10 @@ public class MultiServer extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
 
-        jTextArea1.setBackground(new java.awt.Color(0, 0, 0));
+        jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Bodoni Bk BT", Font.PLAIN, 18)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(0, 255, 0));
+        jTextArea1.setForeground(new java.awt.Color(139, 0, 0));
         jTextArea1.setRows(5);
         jTextArea1.setText("Aguardando cliente se conectar...\n");
         jScrollPane1.setViewportView(jTextArea1);
@@ -71,16 +71,13 @@ public class MultiServer extends javax.swing.JFrame {
                     mcs.receive(pkt);
                     ds = new DatagramSocket();
                     data = new String(pkt.getData());
-                    data = data + "/";
+
                     System.out.println(data);
                     String[] msg = data.split("/");
                     antibugnome = msg[0];
-                    antibugidade = Integer.parseInt(msg[1]);
-                    System.out.println(antibugnome);
-                    System.out.println(antibugidade);
-                    System.out.println(duaspool);
+                    antibugtexto = msg[1];
                     texto = jTextArea1.getText();
-                    jTextArea1.setText(texto + "\n\nVALORES DE CHEGADA\n\nRecebendo valores: " + antibugnome + "\n" + antibugidade);
+                    jTextArea1.setText(texto + "\n\nVALORES DE CHEGADA\n\nRecebendo valores: " + antibugnome + "\n\n" + antibugtexto);
 
                     reenviando();
 
@@ -88,7 +85,7 @@ public class MultiServer extends javax.swing.JFrame {
                 }
             }
         }).start();
-    }//GEN-LAST:event_formWindowOpened
+    }
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(() -> new MultiServer().setVisible(true));
     }
@@ -106,12 +103,12 @@ public class MultiServer extends javax.swing.JFrame {
                         mcs2 = new MulticastSocket(12348);
                         mcs2.joinGroup(addr2);
 
-                        valorenvio = "OLA "+ antibugnome +", tudo bem?";
+                        valorenvio = "Olá "+ antibugnome +", mensagem recebida";
 
                         numeroantibug = 0;
 
                         texto = jTextArea1.getText();
-                        jTextArea1.setText(texto + "\n\nVALORES DE ENVIO\n\nEnviando dados: " + valorenvio);
+                        jTextArea1.setText(texto + "\n\nEnviando dados: " + valorenvio);
                         byte[] b = valorenvio.getBytes();
                         pkt2 = new DatagramPacket(b, b.length, addr2, 12349);
                         ds2.send(pkt2);
