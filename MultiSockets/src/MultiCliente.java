@@ -102,9 +102,9 @@ public class MultiCliente extends javax.swing.JFrame {
             }
         }).start();
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }
 
-    private void formWindowOpened() {//GEN-FIRST:event_formWindowOpened
+    private void formWindowOpened() {
         new Thread(() -> {
             while (true) {
                 try {
@@ -124,7 +124,7 @@ public class MultiCliente extends javax.swing.JFrame {
                 }
             }
         }).start();
-    }//GEN-LAST:event_formWindowOpened
+    }
     public static void main(String[] args) {
 
         java.awt.EventQueue.invokeLater(() -> new MultiCliente().setVisible(true));
